@@ -1,4 +1,4 @@
-# hello-world
+# fresh-storybook
 
 ## Project setup
 ```
