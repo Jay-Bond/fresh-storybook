@@ -1,0 +1,30 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+import MyButton from './MyButton.vue';
+
+<Meta title='Atoms|Top Level Nav.MyButton' component={MyButton} />
+
+# MyButton
+
+Some **markdown** description, or whatever you want.
+
+<Story name='This is the title'>{{
+  		components: { MyButton },
+  		template: `<my-button>This is a Button</my-button>`,
+}}</Story>
+
+## Props
+
+<Props of={MyButton} />
+
+### Tag
+
+We also can pass different tags to represent `MyButton`.
+
+<Preview>
+  <Story name="Second Story">
+    {{
+		components: { MyButton },
+      	template: `<my-button>This is also Button</my-button>`
+    }}
+  </Story>
+</Preview>

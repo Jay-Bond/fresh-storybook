@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap');
+/* Global
+----------------------*/
+$global-font-size: 16px;
+$global-lineheight: 1.2rem;
+
+$primary-color: #008ce3;
+$secondary-color: #9C87E8;
+$dark: #434959;
+
+$light-gray: #F6F8FC;
+$medium-gray: #eaeaea;
+$dark-gray: #727682;
+$input-gray: #cbd4db;
+$light-text: #ADAFB6;
+$black: #0a0a0a;
+$white: #fefefe;
+$success: #69dd95;
+$error: #f26175;
+$warning: #f5c85c;
+$info: #54A4F3;
+
+$white: #fff !default;
+$gray-100: #f8f9fc !default;
+$gray-200: #eaecf4 !default;
+$gray-300: #dddfeb !default;
+$gray-400: #d1d3e2 !default;
+$gray-500: #b7b9cc !default;
+$gray-600: #858796 !default;
+$gray-700: #6e707e !default;
+$gray-800: #5a5c69 !default;
+$gray-900: #3a3b45 !default;
+$black: #000 !default;
+
+$body-background: $white !important;
+$body-font-color: $black;
+$body-font-family: 'Lato', Helvetica, Roboto, Arial, sans-serif;
+
+$global-margin: 1rem;
+$global-padding: 1rem;
+$global-weight-light: 300;
+$global-weight-normal: normal;
+$global-weight-bold: bold;
+$global-radius: 3px;
+
+/* Typography
+----------------------*/
+$header-font-family: 'Lato', Helvetica, Roboto, Arial, sans-serif;
+$header-font-weight: $global-weight-bold;
+$header-font-style: normal;
+$header-line-height: 1.4rem;
+$header-margin-bottom: 0.5rem;
+$header-color: $primary-color;
+
+$paragraph-lineheight: 1.8rem;
+$paragraph-margin-bottom: 1rem;
+
+$small-font-size: 80%;
+
+$hr-width: 100%;
+$hr-border: 1px solid $medium-gray;
+$hr-margin: 1.25rem auto;
+
+$list-lineheight: $paragraph-lineheight;
+$list-margin-bottom: $paragraph-margin-bottom;
+$list-style-type: disc;
+$list-style-position: outside;
+$list-side-margin: 1.25rem;
+$list-nested-side-margin: 1.25rem;
+
+/* Typography Helpers
+----------------------*/
+$lead-font-size: $global-font-size * 1.25;
+$lead-lineheight: 1.6;
+$subheader-lineheight: 1.4;
+$subheader-color: $dark-gray;
+$subheader-font-weight: $global-weight-normal;
+$subheader-margin-top: 0.2rem;
+$subheader-margin-bottom: 0.5rem;
+$stat-font-size: 2.5rem;
+
+/* Button
+----------------------*/
+$border-width: 2px;
+$border-color: #E1E4ED;
+$border-color-light: #8F95A5;
+
+/* Forms
+----------------------*/
+$form-spacing: 1rem;
+$form-label-color: #6f7782;
+$form-label-font-size: 0.875rem;
+$form-label-font-weight: $global-weight-normal;
+$form-label-line-height: 1.4;
+
+$input-padding: $form-spacing / 2;
+$input-color: $black;
+$input-placeholder-color: $input-gray;
+$input-font-family: inherit;
+$input-font-size: 0.875rem;
+$input-font-weight: $global-weight-normal;
+$input-line-height: $global-lineheight;
+$input-background: $white;
+$input-background-focus: $white;
+$input-background-disabled: $light-gray;
+$input-border: 1px solid $input-gray;
+$input-border-focus: 1px solid $dark-gray;
+$input-cursor-disabled: not-allowed;
+$input-radius: 2px;
+
+/* Cards
+----------------------*/
+$card-padding: .75rem 1.25rem;
+$card-border-width: 1px;
+$card-border-type: solid;
+$card-border-color: $medium-gray;
+$card-border: $card-border-width $card-border-type $medium-gray;
+
+/* Misc
+----------------------*/
+$topbar-height: 4.375rem;
+$transition-collapse: height .15s ease !default;
+$spacer: 1rem;
+$grid-gutter-width: $spacer * 1.5;
+
+
+/* Animations
+----------------------*/
+@keyframes growIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animated--grow-in {
+  animation-name: growIn;
+  animation-duration: 200ms;
+  animation-timing-function: transform cubic-bezier(.18,1.25,.4,1), opacity cubic-bezier(0,1,.4,1);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animated--fade-in {
+  animation-name: fadeIn;
+  animation-duration: 200ms;
+  animation-timing-function: opacity cubic-bezier(0,1,.4,1);
+}
+
+
+/* Mixins / Functions
+----------------------*/
+$rem-base: $global-font-size;
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function convert-to-rem($value, $base-value: $rem-base)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+@function rem-calc($values, $base-value: $rem-base) {
+  $max: length($values);
+  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
+}
+
+$colors:(
+  primary: $primary-color,
+  secondary: $secondary-color,
+  success: $success,
+  warning: $warning,
+  error: $error,
+  info: $info,
+  light: $medium-gray,
+  dark: $black,
+);
+$status:(
+  success: $success,
+  warning: $warning,
+  error: $error,
+  info: $info,
+);
+
+@each $name, $color in $colors {
+  .#{$name} {
+    border-color: $color !important;
+    background-color: $color !important;
+  }
+}
